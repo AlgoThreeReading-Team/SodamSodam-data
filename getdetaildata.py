@@ -1,18 +1,33 @@
 import requests
 from bs4 import BeautifulSoup
 
-def getdata():
+def getdata(all_each_urls):
     #봇 인식 방지 BeautifulSoup
     headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36", "Accept-Language": "ko-KR,ko;q=0.8,en-US;q=0.5,en;q=0.3"}
 
-    response = requests.get("http://www.coupang.com/vp/products/6006314977?itemId=1036057927&vendorItemId=5489327048&pickType=COU_PICK", headers=headers)
-    html = response.content
+    for each_category, each_urls in all_each_urls.items():
+        print(each_category)
+        count = 0
+        for each_url in each_urls:
+            response = requests.get(each_url, headers=headers)
+            html = response.content
 
-    soup = BeautifulSoup(html, 'html.parser')
+            soup = BeautifulSoup(html, 'html.parser')
 
-    title = soup.find_all('h2', class_='prod-buy-header-title')
-    original_price = soup.find_all('span', class_='origin-price')
-    discount_price = soup.find_all('span', class_='total-price')
-    discount_percent = soup.find_all('span', class_='discount-rate')
 
-    print(str(title) + "\n" + str(original_price) + "\n" + str(discount_price) + "\n" + str(discount_percent))
+            title = soup.find_all('h2', class_='prod-buy-header__title')[0].text
+            image_url = "https:" + soup.find_all('img', class_='prod-image__detail')[0]['src']
+            total_price = soup.find_all('span', class_='total-price')[0].text.split()[0]
+            shipping_fee = soup.find_all('div', class_='prod-shipping-fee-message')[0].text.split()
+
+            if soup.find_all('span', class_='origin-price'):
+                original_price = soup.find_all('span', class_='origin-price')[0].text.split()[0]
+            if soup.find_all('span', class_='discount-rate'):
+                discount_percent = soup.find_all('span', class_='discount-rate')[0].text.split()[0]
+            if soup.find_all('div', class_='prod-pdd-display-area'):
+                delivery_day = soup.find_all('div', class_='prod-pdd-display-area')[0].text.split()
+
+            count = count + 1
+            print(count)
+            print(title + "\n" + image_url + "\n" +original_price + "\n" + total_price + "\n" + discount_percent + "\n" + str(shipping_fee) + "\n" + str(delivery_day))
+

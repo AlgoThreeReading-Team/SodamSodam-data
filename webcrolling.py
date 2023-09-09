@@ -16,20 +16,7 @@ def get_urls():
 
     #로그인 화면
     driver = uc.Chrome()
-    driver.get("https://login.coupang.com/login/login.pang")
-    time.sleep(1)
-
-    get_email = driver.find_element(By.NAME, "email")
-    get_email.send_keys("아이디")
-    time.sleep(1)
-
-    get_password = driver.find_element(By.NAME, "password")
-    get_password.send_keys("비밀번호")
-    time.sleep(1)
-
-    login_button = driver.find_element(By.CLASS_NAME, "login__button--submit")
-    login_button.click()
-    time.sleep(3)
+    driver.get("https://coupang.com/")
 
     # 검색
     search = driver.find_element(By.NAME, "q")
@@ -38,22 +25,19 @@ def get_urls():
 
     cupang_ranking = driver.current_url
     big_urls["쿠팡랭킹주소"] = cupang_ranking
-    print(cupang_ranking)
 
     # 판매량 순
     salecount_ranking = cupang_ranking + "&sorter=saleCountDesc"
     big_urls["판매량주소"] = salecount_ranking
-    print(salecount_ranking)
 
     # 낮은 가격 순
     salepriceasc_ranking = cupang_ranking + "&sorter=salePriceAsc"
     big_urls["낮은가격주소"] = salepriceasc_ranking
-    print(salepriceasc_ranking)
 
     #봇 인식 방지 BeautifulSoup
     headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36", "Accept-Language": "ko-KR,ko;q=0.8,en-US;q=0.5,en;q=0.3"}
 
-    for each_name, each_url in big_urls.items():
+    for each_category, each_url in big_urls.items():
         response = requests.get(each_url, headers=headers)
         html = response.content
 
@@ -71,9 +55,9 @@ def get_urls():
                 href_link = a_element['href']
                 geturls.append('http://www.coupang.com' + href_link)
 
-        all_each_urls[each_name+" top10 url"] = geturls
+        all_each_urls[each_category+" top10 url"] = geturls
 
     print(big_urls)
     print(all_each_urls)
 
-    return all_each_urls
+    return big_urls, all_each_urls
