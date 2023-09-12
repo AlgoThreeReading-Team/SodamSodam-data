@@ -1,5 +1,4 @@
 import undetected_chromedriver as uc
-import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import requests
@@ -24,6 +23,7 @@ def get_urls():
     search.send_keys(Keys.RETURN)
 
     cupang_ranking = driver.current_url
+    driver.quit()
     big_urls["쿠팡랭킹주소"] = cupang_ranking
 
     # 판매량 순
