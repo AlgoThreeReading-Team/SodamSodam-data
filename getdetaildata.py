@@ -2,11 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 
 def getdata(all_each_urls):
+    all_data = []
     #봇 인식 방지 BeautifulSoup
     headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36", "Accept-Language": "ko-KR,ko;q=0.8,en-US;q=0.5,en;q=0.3"}
 
     for each_category, each_urls in all_each_urls.items():
-        print(each_category)
         for each_url in each_urls:
             response = requests.get(each_url, headers=headers)
             html = response.content
@@ -38,5 +38,19 @@ def getdata(all_each_urls):
             else:
                 delivery_day = "deliver_day null"
 
-            print(title + "\n" + image_url + "\n" + total_price + "\n" + original_price + "\n" + discount_percent + "\n" + shipping_fee + "\n" + shipping_fee_detail + "\n" + delivery_day)
+            each_data = {
+                "category" : each_category,
+                "title" : title,
+                "product_url" : each_url,
+                "image_url" : image_url,
+                "total_price" : total_price,
+                "shipping_fee" : shipping_fee,
+                "shipping_fee_detail" : shipping_fee_detail,
+                "original_price" : original_price,
+                "discount_percent" : discount_percent,
+                "delivery_day" : delivery_day
+            }
 
+            all_data.append(each_data)
+
+    return all_data
