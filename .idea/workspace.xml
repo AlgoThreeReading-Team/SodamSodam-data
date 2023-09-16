@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58549e37-57ed-455f-8895-bb2efe071812" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/getsummarydata.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imagetotext.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getdetaildata.py" beforeDir="false" afterPath="$PROJECT_DIR$/getdetaildata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagetotext.py" beforeDir="false" afterPath="$PROJECT_DIR$/imagetotext.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webcrolling.py" beforeDir="false" afterPath="$PROJECT_DIR$/webcrolling.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

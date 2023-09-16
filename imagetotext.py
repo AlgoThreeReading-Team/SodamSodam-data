@@ -1,5 +1,4 @@
 import os
-import io
 from google.cloud import vision
 
 def image_text(image_urls):
@@ -16,14 +15,8 @@ def image_text(image_urls):
     texts = response.text_annotations
     print("Texts:")
 
-    for text in texts:
-        print(f'\n"{text.description}"')
+    print(texts[0].description)
 
-        vertices = [
-            f"({vertex.x},{vertex.y})" for vertex in text.bounding_poly.vertices
-        ]
-
-        print("bounds: {}".format(",".join(vertices)))
 
     # 에러 처리
     if response.error.message:

@@ -59,6 +59,7 @@ def get_detaildata(product_url):
 
     #상품 상세 내용
     big_content = soup.find('div', class_='vendor-item')
+
     # 이미지 URL 추출
     image_urls = []
     img_tags = big_content.find_all('img')
@@ -69,7 +70,7 @@ def get_detaildata(product_url):
                 src = 'https:' + src
             image_urls.append(src)
 
-    image_convert = image_text(image_urls)
+    image_convert = image_text(image_urls) #이미지 text화
 
     # 텍스트 추출
     text_list = []
@@ -78,6 +79,18 @@ def get_detaildata(product_url):
         text = text_div.text
         text_list.append(text)
 
+    # 리뷰 추출
+    review_list = []
+    big_review = soup.find_all('article', class_='sdp-review__article__list__info__user')
+
+    print(big_review)
+    for review in big_review:
+        review_dic = {}
+        review_dic['star'] = review.find('div', class_='js_reviewArticleRatingValue')['data-rating']
+        review_dic['product_name'] = review.find('div', class_='product_info_name')
+        review_dic['title'] = review.find('div', class_='headline')
+        review_dic['content'] = review.find('div', class_='js_reviewArticleContent')
+        review_list.append(review_dic)
 
     each_data = {
         "title" : title,
@@ -91,7 +104,8 @@ def get_detaildata(product_url):
         "delivery_day" : delivery_day,
         "essential_info" : essential_info,
         "image_text" : image_convert,
-        "text" : text_list
+        "text" : text_list,
+        "review" : review_list
     }
 
     driver.quit()
