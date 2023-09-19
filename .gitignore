@@ -161,3 +161,4 @@ cython_debug/
 
 
 image_service_key.json
+chatgpt_service_key.py

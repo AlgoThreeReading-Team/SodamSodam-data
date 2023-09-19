@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-
 def get_summarydata(category_urls):
     # 봇 인식 방지 BeautifulSoup
     headers = {
