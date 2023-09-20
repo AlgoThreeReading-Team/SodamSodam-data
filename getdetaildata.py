@@ -3,7 +3,7 @@ import time
 from bs4 import BeautifulSoup
 import undetected_chromedriver as uc
 from imagetotext import image_text
-
+from get_reviewdata import Coupang
 def get_detaildata(product_url):
     driver = uc.Chrome()
 
@@ -22,8 +22,15 @@ def get_detaildata(product_url):
     shipping_fee = soup.find('div', class_='prod-shipping-fee-message').text.split()
     shipping_fee_detail = " ".join(shipping_fee[1:]).strip()
 
+    if soup.find('div', class_='prod-shipping-fee-message'):
+        shipping_fee = soup.find('div', class_='prod-shipping-fee-message').text.split()
+        shipping_fee_detail = " ".join(shipping_fee[1:]).strip()
+    else:
+        shipping_fee = "shipping_fee null"
+
+
     if shipping_fee_detail == "":
-       shipping_fee_detail = "shipping_fee_detail_null"
+       shipping_fee_detail = "shipping_fee_detail null"
     shipping_fee = shipping_fee[0].strip()
 
     if soup.find('span', class_='origin-price'):
@@ -66,7 +73,7 @@ def get_detaildata(product_url):
     for img_tag in img_tags:
         src = img_tag['src']
         if src:
-            if not src.startswith('https'):
+            if not src.startswith('http'):
                 src = 'https:' + src
             image_urls.append(src)
 
@@ -80,17 +87,9 @@ def get_detaildata(product_url):
         text_list.append(text)
 
     # 리뷰 추출
-    review_list = []
-    big_review = soup.find_all('article', class_='sdp-review__article__list__info__user')
+    product_code = product_url.split('products/')[-1].split('?')[0]
+    review_datas = Coupang().main(product_code)
 
-    print(big_review)
-    for review in big_review:
-        review_dic = {}
-        review_dic['star'] = review.find('div', class_='js_reviewArticleRatingValue')['data-rating']
-        review_dic['product_name'] = review.find('div', class_='product_info_name')
-        review_dic['title'] = review.find('div', class_='headline')
-        review_dic['content'] = review.find('div', class_='js_reviewArticleContent')
-        review_list.append(review_dic)
 
     each_data = {
         "title" : title,
@@ -105,7 +104,7 @@ def get_detaildata(product_url):
         "essential_info" : essential_info,
         "image_text" : image_convert,
         "text" : text_list,
-        "review" : review_list
+        "review" : review_datas
     }
 
     driver.quit()

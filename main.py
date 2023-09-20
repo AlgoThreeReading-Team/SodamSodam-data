@@ -2,19 +2,25 @@ from webcrolling import get_urls
 from getdetaildata import get_detaildata
 from getsummarydata import get_summarydata
 import time
+import csv
 
 if __name__ == '__main__':
     start_time = time.time()
 
-    word = input()
+    #word = input()
 
     #category_urls = get_urls(word)
     #get_summarydata(category_urls)
-    data = get_detaildata("https://www.coupang.com/vp/products/6006314977?itemId=1036057927&vendorItemId=5489327048&pickType=COU_PICK&q=%EA%B3%A0%EA%B5%AC%EB%A7%88&itemsCount=35&searchId=ad0db04a78e54e838a709712b89014b0&rank=1&isAddedCart=")
+    data = get_detaildata("https://www.coupang.com/vp/products/6372535763?itemId=13504507360&vendorItemId=86407673438&q=%EB%A1%9C%EC%85%98&itemsCount=36&searchId=fd45a1f9213247df9011f1adb0dd4843&rank=2&isAddedCart=")
 
+    print(data)
     for key, value in data.items():
         output_str = f'{key}: {value}'
         print(output_str)
+
+    with open('product.csv', 'a', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(data.values())
 
 
 
