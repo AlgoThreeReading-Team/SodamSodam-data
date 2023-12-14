@@ -19,11 +19,11 @@ def image_text(image_urls):
         texts = response.text_annotations
 
         if not texts == []:
-            if len(texts[0].description) > 4000:
+            if len(texts[0].description) > 3500:
                 text_to_summarize = texts[0].description
                 while len(text_to_summarize) > 0:
-                    chunk = text_to_summarize[:4000]  # 4000자씩 잘라냅니다.
-                    text_to_summarize = text_to_summarize[4000:]  # 처리한 부분을 제외한 나머지 문자열을 얻습니다.
+                    chunk = text_to_summarize[:3500]  # 3500자씩 잘라냅니다.
+                    text_to_summarize = text_to_summarize[3500:]  # 처리한 부분을 제외한 나머지 문자열을 얻습니다.
                     summary = gpt_summary(chunk)  # gpt_summary 함수를 호출하여 요약을 생성합니다.
                     image_texts.append(summary)
             else:

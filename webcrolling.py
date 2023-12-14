@@ -1,8 +1,6 @@
 import undetected_chromedriver as uc
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-import requests
-from bs4 import BeautifulSoup
 
 def get_urls(word):
     category_urls = []

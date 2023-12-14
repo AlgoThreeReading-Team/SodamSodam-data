@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58549e37-57ed-455f-8895-bb2efe071812" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/get_reviewdata.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/headers.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SodamSodam-data.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SodamSodam-data.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getdetaildata.py" beforeDir="false" afterPath="$PROJECT_DIR$/getdetaildata.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imagetotext.py" beforeDir="false" afterPath="$PROJECT_DIR$/imagetotext.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcrolling.py" beforeDir="false" afterPath="$PROJECT_DIR$/webcrolling.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +60,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="D:\SodamSodam-data\Scripts\python.exe" />
-      <option name="SDK_NAME" value="Python 3.9 (SodamSodam-data)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
